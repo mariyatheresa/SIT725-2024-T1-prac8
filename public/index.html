@@ -1,0 +1,119 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">FOOD REVIEWS</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#">Explore</a></li>
+                <li><a href="#">Reviews</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+
+        <div>
+            <h4 class="center-align">Welcome to Mariya's Food Review</h4>
+            <div class="row">
+                <div class="col s12"></div>
+                <img src="images/main-image.webp" alt="" srcset="" class="main-image">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/butter-chicken.jpg">
+                        <span class="card-title">Butter Chicken</span>
+                    </div>
+                    <div class="card-content">
+                        <p>It is a type of curry made from chicken with a spiced tomato and butter sauce.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#modal1" class="waves-effect waves-light btn modal-trigger">FEEDBACK</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/pasta.jpeg">
+                        <span class="card-title">Pasta</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Pasta is a collective name for a category of food made from wheat flour and water, sometimes
+                            with egg.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#modal1" class="waves-effect waves-light btn modal-trigger">FEEDBACK</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/salad.jpg">
+                        <span class="card-title">Salad</span>
+                    </div>
+                    <div class="card-content">
+                        <p>A salad is a dish consisting of mixed ingredients, frequently vegetables.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#modal1" class="waves-effect waves-light btn modal-trigger">FEEDBACK</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="row modal-content">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="first_name" type="text" class="validate">
+                        <label for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="review" class="materialize-textarea"></textarea>
+                        <label for="review">Give Your Review</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 center-align">
+                        <a class="waves-effect waves-light btn" id="formSubmit">submit</a>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
