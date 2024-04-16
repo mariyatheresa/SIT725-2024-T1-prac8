@@ -1,71 +1,30 @@
-var express = require("express") 
+const express = require("express");
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const { MongoClient, ServerApiVersion } = require('mongodb'); 
-var app = express() 
-const uri = "mongodb+srv://mariyatheresa:mariyamongodb@cluster1.5n0s5rg.mongodb.net/"; 
-var port = process.env.port || 2008; 
-let collection; 
-app.use(express.static(__dirname + '/public')) 
-app.use(express.json()); 
-app.use(express.urlencoded({ extended: false })); 
+const feedbackController = require('./controllers/feedbackControllers');
+const path = require('path');
+
+const app = express();
+const uri = "mongodb+srv://mariyatheresa:mariyamongodb@cluster1.5n0s5rg.mongodb.net/";
+const port = process.env.PORT || 2008;
 
 
+mongoose.connect(uri)
+    .then(() => console.log("You successfully connected to MongoDB!"))
+    .catch(console.error);
 
-async function runDBConnection() { 
-    try { 
-        await mongoose.connect(uri); 
-        console.log("You successfully connected to MongoDB!");
-    } catch (ex) { 
-        console.error(ex); 
-    } 
-} 
-runDBConnection().catch(console.dir);
-// Define feedback schema and model
-const feedbackSchema = new mongoose.Schema({
-    foodName: String,
-    imageURL: String,
-    review: String
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.post('/submit-feedback', feedbackController.submitFeedback);
+app.get('/api/reviews', feedbackController.fetchReviews);
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-const Feedback = mongoose.model('Feedback', feedbackSchema);
-
-app.post('/submit-feedback', (req, res) => {
-
-    const newFeedback = new Feedback({
-        foodName : req.body.foodName,
-        imageURL : req.body.imageurl,
-        review : req.body.review
-    });
-
-    newFeedback.save()
-    .then(savedFeedback => {
-      console.log('Review saved successfully:', savedFeedback);
-      res.redirect('/');
-    })
-    .catch(err => {
-      console.error('Error saving review:', err);
-      res.status(500).send('Error saving Review to database');
-    });
+app.listen(port, () => {
+    console.log("Server running on port: " + port);
 });
-
-// Fetch reviews from the database
-app.get('/api/reviews', async (req, res) => {
-    try {
-        const reviews = await Feedback.find();
-        res.status(200).json(reviews);
-    } catch (err) {
-        console.error('Error fetching cards:', err);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-  });
-
-app.get('/', (req, res) => { 
-    res.render('index.html'); 
-}); 
-
-app.listen(port,()=>{
-    console.log("server running on : "+port)
-    })
 
 
