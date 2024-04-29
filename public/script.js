@@ -1,3 +1,8 @@
+let socket = io();
+ 
+socket.on('number', (msg) => {
+  console.log('Random Number: ' + msg);
+});
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.modal');
   var instances = M.Modal.init(elems);
@@ -38,5 +43,4 @@ $(document).ready(() => {
       });
   });
 });
-
 
