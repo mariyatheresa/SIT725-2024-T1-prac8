@@ -1,11 +1,12 @@
-let socket = io();
- 
-socket.on('number', (msg) => {
-  console.log('Random Number: ' + msg);
-});
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.modal');
   var instances = M.Modal.init(elems);
+
+  const socket = io("http://localhost:2008");
+
+  socket.on('number', (msg) => {
+    console.log('Random Number: ' + msg);
+  });
 });
 
 const getcards = () => {
@@ -19,13 +20,13 @@ const getcards = () => {
 
 
 $(document).ready(() => {
-  
-  $.get('/api/reviews', (reviews) => {
-      const reviewsContainer = $('#reviews-container');
 
-    
-      reviews.forEach((review) => {
-          const cardHtml = `
+  $.get('/api/reviews', (reviews) => {
+    const reviewsContainer = $('#reviews-container');
+
+
+    reviews.forEach((review) => {
+      const cardHtml = `
           <div class="col s12 m4">
           <div class="card">
               <div class="card-image">
@@ -39,8 +40,8 @@ $(document).ready(() => {
       </div>
           `;
 
-          reviewsContainer.append(cardHtml);
-      });
+      reviewsContainer.append(cardHtml);
+    });
   });
 });
 
